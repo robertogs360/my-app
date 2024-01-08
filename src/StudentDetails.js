@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 const StudentDetails = ({ studentId, setCurrentView }) => {
   const [studentDetails, setStudentDetails] = useState(null);
 
+  console.log(studentId)
+
   useEffect(() => {
     // Aquí se haría la llamada a la API para obtener los detalles del estudiante
     fetch(`https://localhost:7297/api/Students/${studentId}`)

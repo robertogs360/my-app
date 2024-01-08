@@ -11,12 +11,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const App = () => {
   const [currentView, setCurrentView] = useState('Home');
   const [studentId, setStudentId] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchText, setSearchText] = useState(''); // Nuevo estado para searchText
 
   let ComponentToShow;
   switch (currentView) {
     case 'Home':
-      ComponentToShow = <Home setCurrentView={setCurrentView} setStudentId={setStudentId} setSearchTerm={setSearchTerm} />;
+      ComponentToShow = <Home setCurrentView={setCurrentView} setStudentId={setStudentId} searchText={searchText} setSearchText={setSearchText} />;
       break;
     case 'CreateStudent':
       ComponentToShow = <CreateStudent setCurrentView={setCurrentView} />;
@@ -25,7 +25,7 @@ const App = () => {
       ComponentToShow = <StudentDetails studentId={studentId} setCurrentView={setCurrentView} />;
       break;
     case 'SearchList':
-      ComponentToShow = <SearchList searchTerm={searchTerm} setCurrentView={setCurrentView} />;
+      ComponentToShow = <SearchList setStudentId={setStudentId} setCurrentView={setCurrentView} searchText={searchText} />;
       break;
     default:
       ComponentToShow = <Home setCurrentView={setCurrentView} />;
