@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const StudentDetails = ({ studentId, setCurrentView }) => {
+const StudentDetails = ({ studentId, setCurrentView, setEditStudentData }) => {
   const [studentDetails, setStudentDetails] = useState(null);
 
   useEffect(() => {
@@ -50,7 +50,12 @@ const StudentDetails = ({ studentId, setCurrentView }) => {
       <p>{studentDetails.email}</p>
       <button onClick={() => setCurrentView('Home')}>Back to Home</button>
       <button onClick={deleteStudent}>Eliminar alumno</button>
-    </div>
+      <button onClick={() => {
+        setEditStudentData(studentDetails);
+        setCurrentView('ModifyStudent');
+      }}>
+        Modificar alumno
+      </button>    </div>
   );
 };
 

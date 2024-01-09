@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const CreateStudent = ({ setCurrentView, editStudentData }) => {
+const CreateStudent = ({ setCurrentView, editStudentData, isEditMode }) => {
   const [formData, setFormData] = useState({
     id: '',
     name: '',
@@ -28,38 +28,45 @@ const CreateStudent = ({ setCurrentView, editStudentData }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    const url = isEditMode ? `https://localhost:7297/api/Students/${formData.id}` : 'https://localhost:7297/api/Students';
+    const method = isEditMode ? 'PUT' : 'POST';
 
-    fetch('https://localhost:7297/api/Students', {
-      method: 'POST',
+    fetch(url, {
+      method: method,
       body: JSON.stringify(formData),
       headers: { 'Content-Type': 'application/json' }
     })
       .then(response => {
         if (response.ok) {
-          return response.json();
+          if (response.status === 204) { // Suponiendo que el servidor devuelve un 204 para una respuesta sin contenido
+            return {}; // Devuelve un objeto vacío para manejar correctamente la respuesta
+          } else {
+            return response.json();
+          }
         } else {
-          throw new Error('Error en la creación del alumno');
+          throw new Error(isEditMode ? 'Error al modificar el alumno' : 'Error al crear el alumno');
         }
       })
       .then(data => {
         console.log(data);
-        alert('Alumno creado satisfactoriamente');
-        setFormData({
-          id: '',
-          name: '',
-          surname: '',
-          dni: '',
-          address: '',
-          cp: '',
-          city: '',
-          phone: '',
-          email: ''
-        });
+        alert(isEditMode ? 'Alumno modificado satisfactoriamente' : 'Alumno creado satisfactoriamente');
+        if (!isEditMode) {
+          setFormData({
+            id: '',
+            name: '',
+            surname: '',
+            dni: '',
+            address: '',
+            cp: '',
+            city: '',
+            phone: '',
+            email: ''
+          });
+        }
       })
       .catch(error => {
         console.error('Error:', error);
-        alert('Error al crear el alumno');
+        alert(isEditMode ? 'Error al modificar el alumno' : 'Error al crear el alumno');
       });
   };
   return (
@@ -72,6 +79,7 @@ const CreateStudent = ({ setCurrentView, editStudentData }) => {
           name="id"
           value={formData.id}
           onChange={handleChange}
+          readOnly={isEditMode} // Hace que el campo sea de solo lectura en modo edición
         />
 
         <label htmlFor="name">Nombre:</label>
@@ -146,13 +154,13 @@ const CreateStudent = ({ setCurrentView, editStudentData }) => {
           onChange={handleChange}
         />
 
-        <button type="submit" className="create-button">Crear Alumno</button>
+        <button type="submit" className="submit-button">
+          {isEditMode ? 'Modificar Alumno' : 'Crear Alumno'}
+        </button>
       </form>
       <button onClick={() => setCurrentView('Home')} className="home-button">Home</button>
     </div>
-
   );
-
 };
 
 export default CreateStudent;
