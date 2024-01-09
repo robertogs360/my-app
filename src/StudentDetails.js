@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 const StudentDetails = ({ studentId, setCurrentView }) => {
   const [studentDetails, setStudentDetails] = useState(null);
 
