@@ -70,7 +70,7 @@ const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
           columns={columns}
           pageSize={5}
           onRowClick={handleRowClick}
-          checkboxSelection
+        // checkboxSelection
         />
       </Box>
       <button onClick={() => setCurrentView('CreateStudent')} className="create-student-button">Crear Alumno</button>
