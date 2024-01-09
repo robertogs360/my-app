@@ -1,21 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import './Styles/Home.css'
+import Box from '@mui/material/Box';
+import { DataGrid } from '@mui/x-data-grid';
 
 const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
-  const [Students, setStudents] = useState([]);
+  const [students, setStudents] = useState([]);
 
   useEffect(() => {
     fetch('https://localhost:7297/api/Students')
       .then(response => response.json())
       .then(data => {
-        const lastFiveStudents = data.slice(-5);
+        const lastFiveStudents = data.map(student => ({
+          id: student.id,
+          firstName: student.name,
+          lastName: student.surname,
+          dni: student.dni,
+          address: student.address,
+          cp: student.cp,
+          city: student.city,
+          phone: student.phone,
+          email: student.email
+        }));
         setStudents(lastFiveStudents);
       })
       .catch(error => console.error('Error fetching data: ', error));
   }, []);
 
-  const handleStudentClick = (id) => {
-    setStudentId(id);
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 20 },
+    { field: 'firstName', headerName: 'First name', width: 150, editable: false },
+    { field: 'lastName', headerName: 'Last name', width: 200, editable: false },
+    { field: 'dni', headerName: 'DNI', width: 150, editable: false },
+    { field: 'address', headerName: 'Address', width: 300, editable: false },
+    { field: 'cp', headerName: 'CP', width: 100, editable: false },
+    { field: 'city', headerName: 'City', width: 200, editable: false },
+    { field: 'phone', headerName: 'Phone', width: 150, editable: false },
+    { field: 'email', headerName: 'Email', width: 300, editable: false },
+  ];
+
+  const handleRowClick = (params) => {
+    setStudentId(params.row.id);
     setCurrentView('StudentDetails');
   };
 
@@ -41,28 +64,15 @@ const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
         />
         <button onClick={handleSearchSubmit}>Search</button>
       </div>
-      <div className="Student-list">
-        <div className="student-item header">
-          <span>Name</span>
-          <span>Surname</span>
-          <span>DNI</span>
-          <span>Address</span>
-          <span>CP</span>
-          <span>City</span>
-          <span>Phone</span>
-        </div>
-        {Students.map(student => (
-          <div key={student.id} className="student-item" onClick={() => handleStudentClick(student.id)}>
-            <span>{student.name}</span>
-            <span>{student.surname}</span>
-            <span>{student.dni}</span>
-            <span>{student.address}</span>
-            <span>{student.cp}</span>
-            <span>{student.city}</span>
-            <span>{student.phone}</span>
-          </div>
-        ))}
-      </div>
+      <Box sx={{ height: 650, width: '100%' }}>
+        <DataGrid
+          rows={students}
+          columns={columns}
+          pageSize={5}
+          onRowClick={handleRowClick}
+          checkboxSelection
+        />
+      </Box>
       <button onClick={() => setCurrentView('CreateStudent')} className="create-student-button">Crear Alumno</button>
     </div>
   );

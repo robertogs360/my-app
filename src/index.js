@@ -6,11 +6,6 @@ import CreateStudent from './CreateStudent';
 import StudentDetails from './StudentDetails';
 import SearchList from './SearchList';
 
-import './Styles/index.css';
-import './Styles/Home.css';
-import './Styles/StudentDetails.css';
-import './Styles/SearchList.css';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const App = () => {

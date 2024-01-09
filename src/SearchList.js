@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './Styles/SearchList.css'
 
 const SearchList = ({ searchText, setStudentId, setCurrentView }) => {
   const [searchResults, setSearchResults] = useState([]);
