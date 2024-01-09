@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import './Styles/Home.css'
+
 const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
   const [Students, setStudents] = useState([]);
 

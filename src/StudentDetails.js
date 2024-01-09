@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import './Styles/StudentDetails.css'
+
 const StudentDetails = ({ studentId, setCurrentView }) => {
   const [studentDetails, setStudentDetails] = useState(null);
 
