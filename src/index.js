@@ -5,7 +5,9 @@ import Home from './Home';
 import CreateStudent from './CreateStudent';
 import StudentDetails from './StudentDetails';
 import SearchList from './SearchList';
-import ModifyStudent from './ModifyStudent';
+import ModifyStudent from './ModifyStudent'
+
+import './styles/index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

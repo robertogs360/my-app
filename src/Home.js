@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
   const [students, setStudents] = useState([]);
@@ -9,7 +11,7 @@ const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
     fetch('https://localhost:7297/api/Students')
       .then(response => response.json())
       .then(data => {
-        const lastFiveStudents = data.map(student => ({
+        const lastFiveStudents = data.slice(-6).map(student => ({
           id: student.id,
           firstName: student.name,
           lastName: student.surname,
@@ -26,15 +28,15 @@ const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
   }, []);
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 20 },
-    { field: 'firstName', headerName: 'First name', width: 150, editable: false },
-    { field: 'lastName', headerName: 'Last name', width: 200, editable: false },
-    { field: 'dni', headerName: 'DNI', width: 150, editable: false },
-    { field: 'address', headerName: 'Address', width: 300, editable: false },
-    { field: 'cp', headerName: 'CP', width: 100, editable: false },
-    { field: 'city', headerName: 'City', width: 200, editable: false },
-    { field: 'phone', headerName: 'Phone', width: 150, editable: false },
-    { field: 'email', headerName: 'Email', width: 300, editable: false },
+    { field: 'id', headerName: 'ID', flex: 1 },
+    { field: 'firstName', headerName: 'First name', flex: 1, editable: false },
+    { field: 'lastName', headerName: 'Last name', flex: 1, editable: false },
+    { field: 'dni', headerName: 'DNI', flex: 1, editable: false },
+    { field: 'address', headerName: 'Address', flex: 1, editable: false },
+    { field: 'cp', headerName: 'CP', flex: 1, editable: false },
+    { field: 'city', headerName: 'City', flex: 1, editable: false },
+    { field: 'phone', headerName: 'Phone', flex: 1, editable: false },
+    { field: 'email', headerName: 'Email', flex: 1, editable: false },
   ];
 
   const handleRowClick = (params) => {
@@ -53,27 +55,33 @@ const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
   return (
     <div className="admin-panel">
       <header className="header">
-        <h1>Bienvenido, userAdmin</h1>
+        <h1 class="welcome">Welcome back, userAdmin</h1>
       </header>
       <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Busca o pincha en un alumno para modificar o eliminar"
-          value={searchText}
-          onChange={handleSearchChange}
-        />
-        <button onClick={handleSearchSubmit}>Search</button>
+        <div class="search-text">
+          <TextField
+            type="text"
+            placeholder="ID, Name, Surname... "
+            value={searchText}
+            onChange={handleSearchChange}
+          />
+        </div>
+        <div class="search-button">
+          <Button variant="outlined" onClick={handleSearchSubmit}>Search</Button>
+        </div>
+        <h3 class="instructions">or... </h3>
+        <h2 class="instructions">click on recently added students to see details</h2>
       </div>
-      <Box sx={{ height: 650, width: '100%' }}>
+      <Box class="data-box" sx={{ height: 650, width: '85%' }}>
         <DataGrid
           rows={students}
           columns={columns}
-          pageSize={5}
+          pageSize={students.length} // Ajusta este valor según tus necesidades
+          hideFooterPagination={true} // Oculta la barra de herramientas de paginación
           onRowClick={handleRowClick}
-        // checkboxSelection
         />
       </Box>
-      <button onClick={() => setCurrentView('CreateStudent')} className="create-student-button">Crear Alumno</button>
+      <Button variant="contained" onClick={() => setCurrentView('CreateStudent')} className="create-student-button">Crear Alumno</Button>
     </div>
   );
 };
