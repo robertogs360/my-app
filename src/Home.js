@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
   const [students, setStudents] = useState([]);
 
+
   useEffect(() => {
     fetch('https://localhost:7297/api/Students')
       .then(response => response.json())
@@ -81,6 +82,7 @@ const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
           onRowClick={handleRowClick}
         />
       </Box>
+
       <Button variant="contained" onClick={() => setCurrentView('CreateStudent')} className="create-student-button">Create Student</Button>
     </div>
   );
