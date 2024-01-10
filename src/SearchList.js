@@ -47,17 +47,21 @@ const SearchList = ({ searchText, setStudentId, setCurrentView }) => {
 
   return (
     <div className="search-results">
-      <h2 class="search-result">Results for <span class="search-text-result">{searchText}</span>:</h2>
       <Button onClick={() => setCurrentView('Home')}>BACK TO HOME</Button>
-      <Box sx={{ height: 800, width: '100%' }}>
-        <DataGrid
-          rows={searchResults}
-          columns={columns}
-          pageSize={5}
-          hideFooterPagination={true}
-          onRowClick={handleRowClick}
-        />
-      </Box>
+      {searchResults.length === 0 ? (
+        <h2 className="search-result">No results for <span className="search-text-result">{searchText}</span></h2>
+      ) : (
+        <Box sx={{ height: 800, width: '100%' }}>
+          <h2 className="search-result"> {searchResults.length} Results for <span className="search-text-result">{searchText}</span>:</h2>
+          <DataGrid
+            rows={searchResults}
+            columns={columns}
+            pageSize={5}
+            hideFooterPagination={true}
+            onRowClick={handleRowClick}
+          />
+        </Box>
+      )}
     </div>
   );
 };

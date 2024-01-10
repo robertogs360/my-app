@@ -6,13 +6,15 @@ import Button from '@mui/material/Button';
 
 const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
   const [students, setStudents] = useState([]);
+  const [totalStudents, setTotalStudents] = useState(0);
 
 
   useEffect(() => {
     fetch('https://localhost:7297/api/Students')
       .then(response => response.json())
       .then(data => {
-        const lastFiveStudents = data.slice(-6).map(student => ({
+        setTotalStudents(data.length);
+        const lastFiveStudents = data.slice(-4).map(student => ({
           id: student.id,
           firstName: student.name,
           lastName: student.surname,
@@ -53,13 +55,15 @@ const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
     setCurrentView('SearchList');
   };
 
+  console.log(students.length)
+
   return (
     <div className="admin-panel">
       <header className="header">
-        <h1 class="welcome">Welcome back, userAdmin</h1>
+        <h1 className="welcome">Welcome back, userAdmin</h1>
       </header>
       <div className="search-bar">
-        <div class="search-text">
+        <div className="search-text">
           <TextField
             type="text"
             placeholder="ID, Name, Surname... "
@@ -67,13 +71,13 @@ const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
             onChange={handleSearchChange}
           />
         </div>
-        <div class="search-button">
+        <div className="search-button">
           <Button variant="outlined" onClick={handleSearchSubmit}>Search</Button>
         </div>
-        <h3 class="instructions">or... </h3>
-        <h2 class="instructions">click on recently added students to see details</h2>
+        <h3 className="instructions">or... </h3>
+        <h2 className="instructions">click on recently added students to see details</h2>
       </div>
-      <Box class="data-box" sx={{ height: 650, width: '85%' }}>
+      <Box className="data-box" sx={{ height: 350, width: '85%' }}>
         <DataGrid
           rows={students}
           columns={columns}
@@ -84,6 +88,7 @@ const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
       </Box>
 
       <Button variant="contained" onClick={() => setCurrentView('CreateStudent')} className="create-student-button">Create Student</Button>
+      <h3 className="instructions">Total students: {totalStudents} </h3>
     </div>
   );
 };

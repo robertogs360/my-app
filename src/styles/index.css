@@ -82,11 +82,14 @@ body {
     text-align: center;
     padding: 1px;
     margin: 1px;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .card{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-left: 30%;
+    width: 40%;
 }
 
 .student-details h2,
@@ -182,4 +185,9 @@ body {
     text-align: center;
     font-weight: bolder;
     margin-bottom: 10px;
+}
+
+.student-avatar {
+    display: block;
+    margin: 0 auto;
 }
