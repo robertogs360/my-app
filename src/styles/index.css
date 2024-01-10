@@ -18,6 +18,11 @@ body {
     margin-bottom: 2px;
 }
 
+.search-result{
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+}
+
 .welcome {
     font-weight: bolder;
     font-size: xx-large;
@@ -34,6 +39,13 @@ body {
 
 .search-bar {
     margin-bottom: 20px;
+}
+
+.search-text-result{
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.6);
 }
 
 .search-bar TextField {

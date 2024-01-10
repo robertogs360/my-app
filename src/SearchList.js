@@ -1,38 +1,63 @@
 import React, { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
+import { DataGrid } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
 
 const SearchList = ({ searchText, setStudentId, setCurrentView }) => {
   const [searchResults, setSearchResults] = useState([]);
-
-  console.log(searchText);
 
   useEffect(() => {
     if (searchText) {
       fetch(`https://localhost:7297/api/Students/search?term=${searchText}`)
         .then(response => response.json())
-        .then(data => setSearchResults(data))
+        .then(data => {
+          const formattedData = data.map(student => ({
+            id: student.id,
+            firstName: student.name,
+            lastName: student.surname,
+            dni: student.dni,
+            address: student.address,
+            cp: student.cp,
+            city: student.city,
+            phone: student.phone,
+            email: student.email
+          }));
+          setSearchResults(formattedData);
+        })
         .catch(error => console.error('Error fetching data: ', error));
     }
   }, [searchText]);
 
-  const handleStudentClick = (id) => {
-    setStudentId(id);
+  const columns = [
+    { field: 'id', headerName: 'ID', flex: 1 },
+    { field: 'firstName', headerName: 'First name', flex: 1, editable: false },
+    { field: 'lastName', headerName: 'Last name', flex: 1, editable: false },
+    { field: 'dni', headerName: 'DNI', flex: 1, editable: false },
+    { field: 'address', headerName: 'Address', flex: 1, editable: false },
+    { field: 'cp', headerName: 'CP', flex: 1, editable: false },
+    { field: 'city', headerName: 'City', flex: 1, editable: false },
+    { field: 'phone', headerName: 'Phone', flex: 1, editable: false },
+    { field: 'email', headerName: 'Email', flex: 1, editable: false },
+  ];
+
+  const handleRowClick = (params) => {
+    setStudentId(params.row.id);
     setCurrentView('StudentDetails');
   };
 
   return (
     <div className="search-results">
-      <div className="search-header">
-        <h2>Resultados de Búsqueda</h2>
-      </div>
-      <div className="search-list">
-        {searchResults.map(student => (
-          <div key={student.id} className="search-item" onClick={() => handleStudentClick(student.id)}>
-            <span>{student.name}</span>
-            <span>{student.surname}</span>
-          </div>
-        ))}
-      </div>
-      <button onClick={() => setCurrentView('Home')}>Back to Home</button>
+      <h2 class="search-result">Results for <span class="search-text-result">{searchText}</span>:</h2>
+      <Button onClick={() => setCurrentView('Home')}>Back to Home</Button>
+      <Box sx={{ height: 800, width: '100%' }}>
+        <DataGrid
+          rows={searchResults}
+          columns={columns}
+          pageSize={5}
+          hideFooterPagination={true}
+          onRowClick={handleRowClick}
+        />
+      </Box>
     </div>
   );
 };
