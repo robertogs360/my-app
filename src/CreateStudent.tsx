@@ -2,7 +2,7 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-// Definición de la interfaz para las props
+
 interface CreateStudentProps {
   setCurrentView: (view: string) => void;
   editStudentData?: {
@@ -19,7 +19,6 @@ interface CreateStudentProps {
   isEditMode: boolean;
 }
 
-// Definición de la interfaz para el estado del formulario
 interface FormData {
   id: string;
   name: string;

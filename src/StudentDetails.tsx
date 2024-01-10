@@ -3,14 +3,12 @@ import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import { red, green, blue, yellow } from '@mui/material/colors';
 
-// Definir una interfaz para las props
 interface StudentDetailsProps {
-  studentId: number | null; // Cambiado para aceptar null
+  studentId: number | null; 
   setCurrentView: (view: string) => void;
   setEditStudentData: (data: Student | null) => void;
 }
 
-// Definir una interfaz para los detalles del estudiante
 interface Student {
   id: number;
   name: string;
@@ -43,7 +41,6 @@ const StudentDetails: React.FC<StudentDetailsProps> = ({ studentId, setCurrentVi
 
   const deleteStudent = () => {
     if (window.confirm('¿Seguro que deseas eliminar este alumno?')) {
-      // Realizar petición DELETE a la API
       fetch(`https://localhost:7297/api/Students/${studentId}`, {
         method: 'DELETE'
       })

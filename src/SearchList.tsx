@@ -3,14 +3,14 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
 
-// Definir una interfaz para las props
+
 interface SearchListProps {
   searchText: string;
   setStudentId: (id: number) => void;
   setCurrentView: (view: string) => void;
 }
 
-// Definir una interfaz para la estructura de los datos del estudiante
+
 interface StudentData {
   id: number;
   firstName: string;

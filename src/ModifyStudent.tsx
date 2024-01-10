@@ -1,7 +1,6 @@
 import React from 'react';
 import CreateStudent from './CreateStudent';
 
-// Definición de la interfaz para las props
 interface ModifyStudentProps {
     setCurrentView: (view: string) => void;
     studentData?: {

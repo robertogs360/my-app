@@ -19,7 +19,7 @@ const App: React.FC = () => {
   const [currentView, setCurrentView] = useState < string > ('Home');
   const [studentId, setStudentId] = useState < number | null > (null);
   const [searchText, setSearchText] = useState < string > ('');
-  const [editStudentData, setEditStudentData] = useState < any | null > (null); // Consider specifying a more detailed type for student data
+  const [editStudentData, setEditStudentData] = useState < any | null > (null); 
   const [isAuthenticated, setIsAuthenticated] = useState < boolean > (false);
   const [userName, setUserName] = useState < string > ('');
 

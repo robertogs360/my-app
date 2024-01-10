@@ -4,7 +4,6 @@ import { DataGrid, GridRowParams } from '@mui/x-data-grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-// Definición de la interface para las props
 interface HomeProps {
   setCurrentView: (view: string) => void;
   setStudentId: (id: number) => void;
@@ -25,7 +24,6 @@ interface StudentApiResponse {
   email: string;
 }
 
-// Definición del tipo para un estudiante
 interface Student {
   id: number;
   firstName: string;
@@ -46,9 +44,9 @@ const Home: React.FC<HomeProps> = ({ setCurrentView, setStudentId, searchText, s
   useEffect(() => {
     fetch('https://localhost:7297/api/Students')
       .then(response => response.json())
-      .then((data: StudentApiResponse[]) => { // Aquí le decimos a TypeScript qué tipo esperamos que tenga 'data'
+      .then((data: StudentApiResponse[]) => {
         setTotalStudents(data.length);
-        const lastFiveStudents = data.slice(-4).map((student: StudentApiResponse) => ({ // Ahora TypeScript sabe qué tipo tiene 'student'
+        const lastFiveStudents = data.slice(-4).map((student: StudentApiResponse) => ({
           id: student.id,
           firstName: student.name,
           lastName: student.surname,
@@ -116,7 +114,6 @@ const Home: React.FC<HomeProps> = ({ setCurrentView, setStudentId, searchText, s
         <DataGrid
           rows={students}
           columns={columns}
-          // pageSize={students.length}
           hideFooterPagination={true}
           onRowClick={handleRowClick}
         />
