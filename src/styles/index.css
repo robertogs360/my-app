@@ -75,3 +75,111 @@ body {
     color: white;
     margin-top: 20px;
 }
+
+.student-details {
+    background-color: #f5f5f5;
+    color: #151515;
+    text-align: center;
+    padding: 1px;
+    margin: 1px;
+    border-radius: 10px;
+}
+
+.card{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.student-details h2,
+.student-details h3,
+.student-details h4 {
+    font-family: 'Open Sans', sans-serif;
+    color: #151515;
+}
+
+.student-details p {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 1);
+    margin-bottom: 3px;
+}
+
+.student-details Button {
+    margin: 10px;
+
+}
+
+/* Estilos generales para la forma */
+.student-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.student-form h2,
+.student-form p {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Estilos específicos para TextField */
+.student-form .MuiTextField-root {
+    margin: 10px 0;
+    width: 80%;
+}
+
+/* Estilos para los botones */
+.student-form .MuiButton-root {
+    margin-top: 15px;
+    background-color: #51b5eb;
+    color: white;
+}
+
+.student-form .MuiButton-root:hover {
+    background-color: #409ed2;
+}
+
+/* Estilo para el botón de regreso a la página principal */
+.student-form .home-button {
+    background-color: #f5f5f5;
+    color: #51b5eb;
+    border: 2px solid #51b5eb;
+    margin-bottom: 15px;
+}
+
+.student-form .home-button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Estilo para el botón de enviar en el formulario */
+.student-form .submit-button {
+    background-color: #4caf50;
+    /* Color verde para el botón de enviar */
+    color: white;
+}
+
+.student-form .submit-button:hover {
+    background-color: #43a047;
+    /* Color verde oscuro al pasar el mouse por encima */
+}
+
+.student-form-title h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: xx-large;
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.student-form-title p {
+    font-family: 'Roboto mono', sans-serif;
+    color: #333;
+    text-align: center;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}

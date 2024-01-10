@@ -81,7 +81,7 @@ const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
           onRowClick={handleRowClick}
         />
       </Box>
-      <Button variant="contained" onClick={() => setCurrentView('CreateStudent')} className="create-student-button">Crear Alumno</Button>
+      <Button variant="contained" onClick={() => setCurrentView('CreateStudent')} className="create-student-button">Create Student</Button>
     </div>
   );
 };

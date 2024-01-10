@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Button from '@mui/material/Button';
 
 const StudentDetails = ({ studentId, setCurrentView, setEditStudentData }) => {
   const [studentDetails, setStudentDetails] = useState(null);
@@ -38,24 +39,27 @@ const StudentDetails = ({ studentId, setCurrentView, setEditStudentData }) => {
 
   return (
     <div>
-      <h2>Student Details</h2>
-      <h3>{studentDetails.name}</h3>
-      <p>{studentDetails.id}</p>
-      <p>{studentDetails.dni}</p>
-      <p>{studentDetails.surname}</p>
-      <p>{studentDetails.address}</p>
-      <p>{studentDetails.cp}</p>
-      <p>{studentDetails.city}</p>
-      <p>{studentDetails.phone}</p>
-      <p>{studentDetails.email}</p>
-      <button onClick={() => setCurrentView('Home')}>Back to Home</button>
-      <button onClick={deleteStudent}>Eliminar alumno</button>
-      <button onClick={() => {
-        setEditStudentData(studentDetails);
-        setCurrentView('ModifyStudent');
-      }}>
-        Modificar alumno
-      </button>    </div>
+      <Button onClick={() => setCurrentView('Home')}>BACK TO HOME</Button>
+      <div className='student-details'>
+        <div className='card'>
+          <h2>Student Details</h2>
+          <h4>{studentDetails.id}</h4>
+          <h3>{studentDetails.surname}, {studentDetails.name}</h3>
+          <p>DNI: {studentDetails.dni}</p>
+          <p>Address: {studentDetails.address}</p>
+          <p>CP: {studentDetails.cp}</p>
+          <p>City: {studentDetails.city}</p>
+          <p>Phone: {studentDetails.phone}</p>
+          <p>E-mail: {studentDetails.email}</p>
+        </div>
+        <Button variant="outlined" color="error" onClick={deleteStudent}>DELETE</Button>
+        <Button variant="outlined" onClick={() => {
+          setEditStudentData(studentDetails);
+          setCurrentView('ModifyStudent');
+        }}>
+          MODIFY
+        </Button>    </div>
+    </div>
   );
 };
 

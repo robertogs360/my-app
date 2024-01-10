@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 const CreateStudent = ({ setCurrentView, editStudentData, isEditMode }) => {
   const [formData, setFormData] = useState({
@@ -30,6 +32,7 @@ const CreateStudent = ({ setCurrentView, editStudentData, isEditMode }) => {
     e.preventDefault();
     const url = isEditMode ? `https://localhost:7297/api/Students/${formData.id}` : 'https://localhost:7297/api/Students';
     const method = isEditMode ? 'PUT' : 'POST';
+
 
     fetch(url, {
       method: method,
@@ -71,94 +74,107 @@ const CreateStudent = ({ setCurrentView, editStudentData, isEditMode }) => {
   };
   return (
     <div>
+      <div className='student-form-title'>
+        <h2>New student</h2>
+        <p>Insert new students details: </p>
+      </div>
+      <Button onClick={() => setCurrentView('Home')} className="home-button">Back to Home</Button>
       <form className="student-form" onSubmit={handleSubmit}>
-        <label htmlFor="id">ID:</label>
-        <input
-          type="text"
+        <TextField
           id="id"
+          label="ID"
+          variant="standard"
           name="id"
           value={formData.id}
           onChange={handleChange}
-          readOnly={isEditMode} // Hace que el campo sea de solo lectura en modo edición
+          disabled={isEditMode}
+          fullWidth
         />
 
-        <label htmlFor="name">Nombre:</label>
-        <input
-          type="text"
+        <TextField
           id="name"
+          label="Nombre"
+          variant="standard"
           name="name"
           value={formData.name}
           onChange={handleChange}
+          fullWidth
         />
 
-        <label htmlFor="surname">Apellidos:</label>
-        <input
-          type="text"
+        <TextField
           id="surname"
+          label="Apellidos"
+          variant="standard"
           name="surname"
           value={formData.surname}
           onChange={handleChange}
+          fullWidth
         />
 
-        <label htmlFor="dni">DNI:</label>
-        <input
-          type="text"
+        <TextField
           id="dni"
+          label="DNI"
+          variant="standard"
           name="dni"
           value={formData.dni}
           onChange={handleChange}
+          fullWidth
         />
 
-        <label htmlFor="address">Dirección:</label>
-        <input
-          type="text"
+        <TextField
           id="address"
+          label="Dirección"
+          variant="standard"
           name="address"
           value={formData.address}
           onChange={handleChange}
+          fullWidth
         />
 
-        <label htmlFor="cp">Código Postal:</label>
-        <input
-          type="text"
+        <TextField
           id="cp"
+          label="Código Postal"
+          variant="standard"
           name="cp"
           value={formData.cp}
           onChange={handleChange}
+          fullWidth
         />
 
-        <label htmlFor="city">Ciudad:</label>
-        <input
-          type="text"
+        <TextField
           id="city"
+          label="Ciudad"
+          variant="standard"
           name="city"
           value={formData.city}
           onChange={handleChange}
+          fullWidth
         />
 
-        <label htmlFor="phone">Teléfono:</label>
-        <input
-          type="tel"
+        <TextField
           id="phone"
+          label="Teléfono"
+          variant="standard"
           name="phone"
           value={formData.phone}
           onChange={handleChange}
+          fullWidth
         />
 
-        <label htmlFor="email">Correo Electrónico:</label>
-        <input
-          type="email"
+        <TextField
           id="email"
+          label="Correo Electrónico"
+          variant="standard"
           name="email"
           value={formData.email}
           onChange={handleChange}
+          fullWidth
         />
 
-        <button type="submit" className="submit-button">
-          {isEditMode ? 'Modificar Alumno' : 'Crear Alumno'}
-        </button>
+        <Button variant="outlined" color="success" type="submit" className="submit-button">
+          {isEditMode ? 'Modify' : 'Create'}
+        </Button>
       </form>
-      <button onClick={() => setCurrentView('Home')} className="home-button">Home</button>
     </div>
   );
 };

@@ -48,7 +48,7 @@ const SearchList = ({ searchText, setStudentId, setCurrentView }) => {
   return (
     <div className="search-results">
       <h2 class="search-result">Results for <span class="search-text-result">{searchText}</span>:</h2>
-      <Button onClick={() => setCurrentView('Home')}>Back to Home</Button>
+      <Button onClick={() => setCurrentView('Home')}>BACK TO HOME</Button>
       <Box sx={{ height: 800, width: '100%' }}>
         <DataGrid
           rows={searchResults}
