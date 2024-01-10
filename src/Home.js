@@ -4,7 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
+const Home = ({ setCurrentView, setStudentId, searchText, setSearchText, userName }) => {
   const [students, setStudents] = useState([]);
   const [totalStudents, setTotalStudents] = useState(0);
 
@@ -60,7 +60,7 @@ const Home = ({ setCurrentView, setStudentId, searchText, setSearchText }) => {
   return (
     <div className="admin-panel">
       <header className="header">
-        <h1 className="welcome">Welcome back, userAdmin</h1>
+        <h1 className="welcome">Welcome back, {userName}</h1>
       </header>
       <div className="search-bar">
         <div className="search-text">

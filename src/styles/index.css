@@ -66,7 +66,7 @@ body {
 
 .data-box {
     margin-bottom: 5px;
-    margin-left: 5%;
+    margin-left: 7.5%;
     margin-right: 5%;
 }
 
@@ -191,3 +191,36 @@ body {
     display: block;
     margin: 0 auto;
 }
+
+.login-box {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-left: 36%;
+    width: 25%;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome-login {
+    margin-top: 7%;
+    font-weight: bolder;
+    font-size: xx-large;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.copyright-instructions {
+    margin-left: 30%;
+    width: 40%;
+    margin-top: 10%;
+    text-align: center;
+    font-family: 'Roboto Mono', monospace;
+}
+
