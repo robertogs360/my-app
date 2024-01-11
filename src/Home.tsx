@@ -1,3 +1,4 @@
+// Componente principal, en él se muestran los 4 últimos alumnos creados
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid, GridRowParams } from '@mui/x-data-grid';
@@ -74,21 +75,20 @@ const Home: React.FC<HomeProps> = ({ setCurrentView, setStudentId, searchText, s
     { field: 'email', headerName: 'Email', flex: 1, editable: false },
   ];
 
+// Gestion de acceso al perfil de un alumno concreto
   const handleRowClick = (params: GridRowParams) => {
     setStudentId(params.row.id);
     setCurrentView('StudentDetails');
   };
 
+// Gestión de la búsqueda
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
   };
 
-
   const handleSearchSubmit = () => {
     setCurrentView('SearchList');
   };
-
-  console.log(students.length)
 
   return (
     <div className="admin-panel">

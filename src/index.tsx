@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-
 import Home from './Home';
 import CreateStudent from './CreateStudent';
 import StudentDetails from './StudentDetails';
 import SearchList from './SearchList';
 import ModifyStudent from './ModifyStudent';
 import Login from './Login';
-
 import './styles/index.css';
 
 const rootElement = document.getElementById('root');
@@ -25,6 +23,8 @@ const App: React.FC = () => {
 
   let ComponentToShow: JSX.Element;
 
+// Manejo de la autenticación del usuario y
+// estructura de enrutamiento condicional para gestionar la navegación entre componentes
   if (!isAuthenticated) {
     ComponentToShow = <Login onLogin={setIsAuthenticated} onSetUserName={setUserName} />;
   } else {
