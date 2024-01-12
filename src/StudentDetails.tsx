@@ -40,7 +40,7 @@ const StudentDetails: React.FC<StudentDetailsProps> = ({ studentId, setCurrentVi
 
 
   const deleteStudent = () => {
-    if (window.confirm('¿Seguro que deseas eliminar este alumno?')) {
+    if (window.confirm('¿Are you sure you want to remove this student?')) {
       fetch(`https://localhost:7297/api/Students/${studentId}`, {
         method: 'DELETE'
       })

@@ -3,7 +3,6 @@ const https = require('https');
 
 const url = 'https://localhost:7297/api/Students';
 
-// Función para generar un alumno aleatorio
 function generarAlumno(id) {
     return {
         id: id,
@@ -18,7 +17,6 @@ function generarAlumno(id) {
     };
 }
 
-// Enviar 100 solicitudes POST
 async function crearAlumnos() {
     for (let i = 1; i <= 250; i++) {
         let alumno = generarAlumno(i);
