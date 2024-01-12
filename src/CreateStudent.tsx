@@ -103,8 +103,8 @@ const CreateStudent: React.FC<CreateStudentProps> = ({ setCurrentView, editStude
   return (
     <div>
       <div className='student-form-title'>
-        <h2>New student</h2>
-        <p>Insert new students details: </p>
+        <h2>{isEditMode ? 'Modify student' : 'Create new student'}</h2>
+        <p>{isEditMode ? 'details: ' :'insert details: '}</p>
       </div>
       <Button onClick={() => setCurrentView('Home')} className="home-button">Back to Home</Button>
       <form className="student-form" onSubmit={handleSubmit}>
